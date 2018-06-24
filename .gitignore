@@ -1,0 +1,8 @@
+# Max
+.DS_Store
+
+# Vim
+*.swp
+
+# C
+*.o *.out
