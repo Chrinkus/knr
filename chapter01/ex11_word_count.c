@@ -14,7 +14,7 @@
 #define IN  1       /* inside a word */
 #define OUT 0       /* outside a word */
 
-main()
+int main()
 {
     int c, nl, nw, nc, state;
 

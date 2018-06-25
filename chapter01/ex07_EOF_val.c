@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-main()
+int main()
 {
     printf("EOF is: %d\n", EOF);        /* EOF is: -1 */
 }

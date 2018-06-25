@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 
-main()
+int main()
 {
     int c, ns;
 

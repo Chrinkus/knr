@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-main()
+int main()
 {
     printf("hello, world\m\n");     /* hello, worldm */
     printf("hello, world\w\n");     /* hello, worldw */

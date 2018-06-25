@@ -9,7 +9,7 @@
 #define IN  1       /* inside word */
 #define OUT 0       /* outside word */
 
-main()
+int main()
 {
     int c, state;
 
