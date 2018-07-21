@@ -3,6 +3,8 @@
 
 # Vim
 *.swp
+*.swo
 
 # C
-*.o *.out
+*.o
+*.out
