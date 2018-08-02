@@ -6,23 +6,26 @@
 
 #include <stdio.h>
 
-#define swap(t, x, y) (t = (x), x = (y), y = (t))
+#define swap(t, x, y) { t z = x; x = y; y = z; }
 
 int main()
 {
-    int i;
-    int ai[] = { 1, 2, 3, 4, 5, 6 };
+    int a, b, i;
+    double pi, e;
 
-    char a, b = 'b', c = 'c';
+    int ai[] = { 1, 2, 3, 5, 8, 13, 21, 34 };
 
-    swap(i, ai[0], ai[2]);
+    a = 37;
+    b = 42;
+    swap(int, a, b);
+    printf("a == %d, b == %d\n", a, b);
 
-    for (i = 0; i < 6; ++i)
+    pi = 3.14;
+    e = 2.72;
+    swap(double, pi, e);
+    printf("pi == %g, e == %g\n", pi, e);
+
+    swap(int, ai[1], ai[5]);
+    for (i = 0; i < 8; ++i)
         printf("%d\n", ai[i]);
-
-    swap(a, b, c);
-    putchar(b);
-    putchar(' ');
-    putchar(c);
-    putchar('\n');
 }
