@@ -23,8 +23,6 @@ void writelines(char *lineptr[], int nlines);
 
 void qsort(char *lineptr[], int left, int right);
 
-char *stackalloc(char *stack, char *stackp, int n);
-
 /* sort input lines */
 int main()
 {
@@ -44,7 +42,7 @@ int main()
 
 #define MAXLEN  1000                    /* max length of any input line */
 int my_getline(char *, int);
-char *alloc(int);
+char *stackalloc(char *stack, char *stackp, int n);
 
 /* readlines: read input lines */
 int readlines(char *lineptr[], int maxlines, char *stack, char *stackp)
@@ -90,8 +88,35 @@ int my_getline(char *s, int lim)
 char *stackalloc(char *stack, char *stackp, int n)
 {
     if (stack + STACKSIZE - stackp >= n) {
-        stackp += n;
-        return stackp - n;
+        return stackp;
     } else
         return 0;
+}
+
+/* qsort: sort v[left]...v[right] into increasing order */
+void qsort(char *v[], int left, int right)
+{
+    int i, last;
+    void swap(char *v[], int i, int j);
+
+    if (left >= right)                  /* do nothing if array contains */
+        return;                         /* fewer than two elements */
+    swap(v, left, (left + right) / 2);
+    last = left;
+    for (i = left + 1; i <= right; i++)
+        if (strcmp(v[i], v[left]) < 0)
+            swap(v, ++last, i);
+    swap(v, left, last);
+    qsort(v, left, last - 1);
+    qsort(v, last + 1, right);
+}
+
+/* swap: interchange v[i] and v[j] */
+void swap(char *v[], int i, int j)
+{
+    char *temp;
+
+    temp = v[i];
+    v[i] = v[j];
+    v[j] = temp;
 }
