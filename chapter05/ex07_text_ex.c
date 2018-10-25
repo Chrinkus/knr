@@ -44,7 +44,7 @@ int readlines(char *lineptr[], int maxlines)
     nlines = 0;
     while ((len = my_getline(line, MAXLEN)) > 0)
         if (nlines >= maxlines || (p = alloc(len)) == NULL)
-            return 1;
+            return -1;
         else {
             line[len-1] = '\0';         /* delete newline */
             strcpy(p, line);

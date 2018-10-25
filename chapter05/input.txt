@@ -1,4 +1,9 @@
-today is not tuesday
-christmas is coming
-i want a new book
-and all the time to read it
+Why learn C?
+
+Learning C++ first has made it difficult to understand where C ends and C++ begins. I know that C++ is "C with classes" but that seems to be only part of the story. So after gaining a pretty good handle on C++ I felt I needed to go deeper and learn the rest of the story.
+
+C++ is apparently stricter about type safety, for starters. Type safety is not the sole domain of object oriented programming, so this is more than a "with classes" relationship.
+
+Another programming tool related to type-safety is casting. C-style casts are near invisible and hardly self-documenting. C++ does away with potential ambiguity by making its casts big and ugly. Hard to miss and specific enough in the choice of cast to convey the programmer's intent.
+
+If casting is more sophisticated in C++, generic programming, at least insofar as C is aware of generic programming, is a completely different animal. Void-stars are to templates as earth is to pizza.
