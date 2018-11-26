@@ -9,11 +9,16 @@
  * unreasonable the input or the value of n. Write the program so it makes the
  * best use of available storage; lines should be stored as in the sorting
  * program from Section 5.6, not in a two-dimensional array of fixed size.
+ *
+ * I wanted to preserve the argv pointer position so I created the flag char*.
+ * This approach should allow for easier parsing of multiple flags and/or
+ * other command line arguments.
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define MAXLINES    5000            /* max lines to be sorted */
 
@@ -25,9 +30,11 @@ void writelines(char *lineptr[], int nlines);
 int main(int argc, char *argv[])
 {
     int nlines, nprint = 10;
+    char *flag;
 
-    if (--argc > 0 && (*++argv)[0] == '-') {
-        nprint = atoi(++argv[0]);
+    if (--argc > 0 && (flag = *++argv)[0] == '-') {
+        if (isdigit(*++flag))
+            nprint = atoi(flag);
     }
 
     if ((nlines = readlines(lineptr, MAXLINES)) >= 0) {
