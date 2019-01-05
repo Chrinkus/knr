@@ -34,17 +34,36 @@ void writelines(char *lineptr[], int nlines);
 void my_qsort(void *lineptr[], int left, int right, int (*comp)(void *, void *));
 int numcmp(char *, char *);
 
+void reverse_order(void *array[], int nlines);
+
 /* sort input lines */
 int main(int argc, char *argv[])
 {
     int nlines;                     /* number of input lines read */
     int numeric = 0;                /* 1 if numeric sort */
+    int reverse = 0;                /* 1 if reverse sort */
+    int i;
+    char *p;
 
-    if (argc > 1 && strcmp(argv[1], "-n") == 0)
-        numeric = 1;
+    while (--argc && (p = *++argv))
+        if (*p == '-')
+            while (*++p)
+                switch (*p) {
+                case 'n':
+                    numeric = 1;
+                    break;
+                case 'r':
+                    reverse = 1;
+                    break;
+                default:
+                    break;
+                }
+
     if ((nlines = readlines(lineptr, MAXLINES)) >= 0) {
         my_qsort((void **) lineptr, 0, nlines - 1,
                 (int (*)(void*,void*))(numeric ? numcmp : strcmp));
+        if (reverse)
+            reverse_order((void **)lineptr, nlines);
         writelines(lineptr, nlines);
         return 0;
     } else {
@@ -98,6 +117,18 @@ int numcmp(char *s1, char *s2)
         return 1;
     else
         return 0;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+
+void reverse_order(void *array[], int length)
+{
+    int b = 0, e = length - 1;
+    while (b < e) {
+        swap(array, b, e);
+        ++b;
+        --e;
+    }
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
